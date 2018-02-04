@@ -1,0 +1,26 @@
+/*
+Concept
+
+*write a function that takes a number, and everytime a number is divisible by 3 it will print fizz, everytime a number is divisible by 5 it will print buzz and everytime a number is divisible by both 3 and 5 it will print fizzbuzz
+
+*modulo operator(%) is needed when creating a fizzbuzz program. 
+    -modulo operator returns the remainder of a number i.e 7 % 3 returns 1.
+        -that means 3 goes into seven 2 times then return a remainder which is 1.
+*/
+ <script>
+function fizz_buzz(num){
+    for(var i = 1; i <= num; i++){
+        if(i % 3 === 0 && i % 5 === 0){
+            console.log("fizz buzz");
+        }else if(i % 3 === 0){
+            console.log(fizz);
+        }else if(i % 5 === 0){
+            console.log("buzz"); 
+        }else{
+            cosole.log(num);
+        }
+    }
+}
+
+fizz_buzz(86);
+</script>

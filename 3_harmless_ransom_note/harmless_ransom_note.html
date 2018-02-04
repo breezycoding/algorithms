@@ -1,0 +1,94 @@
+<script>
+/***
+    concept
+        -two set of strings of words are compared to each other, NOTE and MAGAZINE(link in ransom note). if MAGAZINE have enough words to cover NOTE it returns true else returns false.
+        -ie 
+            im a secret admirer(NOTE), im a admirer of programming(MAGAZINE)
+                returns false because secret is not found in magazine
+***/
+/*
+    -In this app we assume that no punctuation are made and all letters are small caps
+*/
+function harmless_ransomnote(note_text, magazine_text){
+    /*we convert note and magazine text to an array of words*/
+    var note_arr = note_text.split(" ");
+    var magazine_arr = magazine_text.split(" ");
+    
+    /*
+        -Determine what words are available and how many of each word we have
+        -this technique is called hash table
+        -magazine_obj object will have everyword in the magazine array as a property on it and for each word we want its value to be the number of times its present in the magazine array
+    */
+    var magazine_obj = {};
+    
+    /*loop each magazine word in array*/
+    magazine_arr.forEach(word=>{
+        /*Check if magazine word is present in magazine_obj*/
+        if(!magazine_obj[word])
+            /*if not were going to insert the magazine word in magazine_obj and if the word is not present were going to assign 1 as a value of it. then were going to increment the value of that word by 1*/
+            magazine_obj[word] = 0;
+        magazine_obj[word]++;
+    });
+    
+    var note_is_possible = true;
+    note_arr.forEach(word=>{
+        /*if note word is found in magazine word array decrement the value of this word*/
+        if(magazine_obj[word]){
+            magazine_obj[word]--;
+            /*another condition to check if we have enough word in magazine word array if not we set note_is_possible to false*/
+            if(magazine_obj[word] < 0){
+                note_is_possible = false;
+            }
+        }else{
+            note_is_possible = false;
+        }
+    });
+    return note_is_possible;
+    //console.log(magazine_obj);
+}
+    
+/*WHOLE CODE WITHOUT COMMENT*/
+function harmless_ransomnote(note_text, magazine_text){
+    var note_arr = note_text.split(" ");
+    var magazine_arr = magazine_text.split(" ");
+    
+    var magazine_obj = {};
+    
+    magazine_arr.forEach(word=>{
+        
+        if(!magazine_obj[word])
+            magazine_obj[word] = 0;
+         
+        magazine_obj[word]++;
+    });
+    
+    var note_is_possible = true;
+    
+    note_arr.forEach(word=>{
+        if(magazine_obj[word]){
+            magazine_obj[word]--;
+            
+            if(magazine_obj[word] < 0){
+                note_is_possible = false;
+            }
+            
+        }else{
+            note_is_possible = false;
+        }
+    });
+    
+    return note_is_possible;
+
+    
+}
+/*WHOLE CODE WITHOUT COMMENT*/  
+var h = harmless_ransomnote("this is a secret note for you from a secret admirer", "puerto rico is a place of great wonder and excitement it has many secret waterfall locations that i am an admirer of you must hike quite a distance to find the secret places as they are far from populated areas but it is worth the effort a tip i have for you is to go early in the morning when it is not so hot out also note that you must wear hiking boots this is one of the best places i have ever visited");
+console.log(h);
+/*
+    This algorithm has LINEAR TIME COMPLEXITY O(n)
+    -to be specific this algorithm has
+    O(n) + O(m) since it has two loops executing
+    -this algorithm has two loops but not nested
+    -the time complexity of this algorithm depend on two loops(notes and magazine array)
+*/
+</script>  

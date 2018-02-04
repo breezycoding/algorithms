@@ -1,0 +1,91 @@
+<script>
+/***
+    CEASAR CIPHER
+        -takes in 2 parameter, string and number
+        -spaces and special characters are retained
+        -shifts the given letter by number thats passed in.
+            ie (a, 2) -> a becomes c
+               (z, 2) -> z becomes b(shifting starts again at the beginning)
+               (g, -5) -> g becomes b(if negative number is given it shifts backwards)
+***/
+function caesar_cipher(string, number){
+    number = number % 26;
+    /*convert to lowercase letters*/
+    var lowercase_string = string.toLowerCase();
+    /*reference when shifting the string*/
+    var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    var new_string = "";
+    /*loop every character in string*/
+    for(var i = 0; i < lowercase_string.length; i++){
+        /*current letter*/
+        var current_letter = lowercase_string[i];
+        /*check if current letter is a space, if it is just add it in current_letter*/
+        if(current_letter === " "){
+            new_string += current_letter;
+            /*continue force the loop to proceed on next loop ignoring any other statement below it*/
+            continue;
+        }
+        /*determine the position of letter in the array*/
+        var current_index = alphabet.indexOf(current_letter);
+        
+        /*shift the current letter by the number passed into this function, this will be the new index of our letter*/
+        var new_index = current_index + number;
+        
+        /*hanldes this condition if new index is greater than 25 and less than 0
+            ie
+                if letter is "z" and we want to shift it by 5 places
+            -looping the letter at the beginning of the alphabet*/
+        if(new_index > 25)
+            new_index = new_index - 26;
+        if(new_index < 0)
+            new_index = 26 + new_index;
+        /*string[i]
+            -same letter as in string and  including of uppercase*/
+        if(string[i] === string[i].toUpperCase()){
+            new_string += alphabet[new_index].toUpperCase();
+        }else{
+            new_string += alphabet[new_index];
+        }
+            
+    }
+    
+    return new_string;
+}
+/*WHOLE CODE IMPLEMENTATION WITHOUT COMMENT*/
+function caesar_cipher(string, number){
+    number = number % 26;
+    var lowercase_string = string.toLowerCase();
+    var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    var new_string = "";
+
+    for(var i = 0; i < lowercase_string.length; i++){
+
+        var current_letter = lowercase_string[i];
+        
+        if(current_letter === " "){
+            new_string += current_letter;
+            continue;
+        }
+        
+        var current_index = alphabet.indexOf(current_letter);
+        
+        var new_index = current_index + number;
+        
+        if(new_index > 25)
+            new_index = new_index - 26;
+        if(new_index < 0)
+            new_index = 26 + new_index;
+        
+        if(string[i] === string[i].toUpperCase()){
+            new_string += alphabet[new_index].toUpperCase();
+        }else{
+            new_string += alphabet[new_index];
+        }
+            
+    }
+    
+    return new_string;
+}
+/*WHOLE CODE IMPLEMENTATION WITHOUT COMMENT*/
+console.log(caesar_cipher("Big Car", -16));
+</script>

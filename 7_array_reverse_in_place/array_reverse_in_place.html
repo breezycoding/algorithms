@@ -1,0 +1,52 @@
+<script>
+/*
+    1. Maipulate array thats passed in
+    2. Do not push elements into new array and return. simply manipulate the array thats passed in
+    3. Do not use array reverse
+*/
+/*UDEMY SOLUTION*/
+var reverse_array_in_place = function(arr){
+    var temp = [];
+    for(var i = 0; i < arr.length / 2 ; i++){
+        /*
+            -setting the first element of array to temp variable
+                -1st iteration
+                    i = 0
+                -2nd iteration
+                    i = 2
+        */
+        temp = arr[i];
+        console.log(temp);
+        console.log(arr[0] , arr[1], arr[2], arr[3], arr[4]);
+        /*
+            -setting the 1rt element to be the last element of the array
+            -iteration
+                -1st iteration
+                    arr.length - 1 - i = 2
+                -2nd iteration
+                    arr.length - 1 - i = 1
+        */
+        arr[i] = arr[arr.length - 1 - i];
+        console.log(arr[i]);
+        console.log(arr[0] , arr[1], arr[2], arr[3], arr[4]);
+        
+        /*
+            -setting the 2nd element of the array to be first
+                -1st iteration
+                    arr.length - 1 - i = 0
+                -2nd iteration
+                    arr.length - 1 - i = 2
+        */
+        arr[arr.length - 1 - i] = temp;
+        console.log(arr[arr.length - 1 - i]);
+        console.log(arr[0] , arr[1], arr[2], arr[3], arr[4]);
+        console.log("");
+        
+    }
+    return arr;
+}
+reverse_array_in_place([1,2,3,4,5])
+/*here basically were just shifting the index*/
+//console.log(reverse_array_in_place([1,2,3]));
+/*UDEMY SOLUTION*/
+</script>

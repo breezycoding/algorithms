@@ -1,0 +1,71 @@
+<script>
+/*
+    Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+        Example: The mean of 4, 1, and 7 is (4+1+7)/3 = 12
+    
+    Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+        Example: The median of 4, 1, and 7 is 4 because when the numbers are put in order (1, 4, 7) the number 4 is in the middle.
+        
+    Mode: The most frequent number—that is, the number that occurs the highest number of times.
+        Example: The mode of {4,2,4,3,2,2} is 2 because it occurs three times, which is more than any other number.
+*/
+/*MY SOLUTION*/
+function Mean_median_mode(arr){
+    this.arr = arr;
+}
+Mean_median_mode.prototype.get_mean = function(){
+    var sum = 0;
+    for(var i = 0; i < this.arr.length; i++){
+        sum += this.arr[i];
+    }
+    return sum / this.arr.length;
+}
+Mean_median_mode.prototype.get_median = function(){
+    var bool_swap, temp, first_index, second_index, total_first_index = 0;
+    do{
+        bool_swap = false;
+        for(var i = 0; i < this.arr.length - 1; i++){
+            if(this.arr[i] > this.arr[i + 1]){
+                temp = this.arr[i];
+                this.arr[i] = this.arr[i + 1];
+                this.arr[i + 1] = temp;
+                bool_swap = true;
+            }
+        }
+    }while(bool_swap);
+    console.log(this.arr);
+    if(this.arr.length % 2 === 1){
+       console.log(this.arr[Math.floor(this.arr.length / 2)]);
+    }else if(this.arr.length % 2 === 0){
+        first_index = (this.arr.length / 2) - 1;
+        second_index = (this.arr.length / 2);
+        console.log((this.arr[first_index] + this.arr[second_index]) / 2);
+    }
+    
+}
+Mean_median_mode.prototype.get_mode = function(){
+    var number_obj = {}, largest = this.arr[0], obj_key, inc = 0;
+    for(var i = 0; i < this.arr.length; i++){
+        if(!number_obj[this.arr[i]]){
+            number_obj[this.arr[i]] = 0;
+        }
+        number_obj[this.arr[i]]++;
+    }
+    console.log(number_obj);
+    for(var j in number_obj){
+        obj_key = Object.keys(number_obj);
+        if(number_obj[j] > largest){
+            largest = number_obj[j];
+            if(number_obj[j] === largest){
+                console.log("key:" + obj_key[inc] + " value:"+number_obj[j]);
+            }
+        }
+        inc++;
+    }
+
+}
+
+var mmm = new Mean_median_mode([4,2,4,3,2,4,2,4,3,4,3,4,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]);
+console.log(mmm.get_mode());
+/*MY SOLUTION*/
+</script>
